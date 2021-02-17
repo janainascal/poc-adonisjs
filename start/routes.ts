@@ -19,11 +19,11 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 
 Route.get('/', async () => {
   return { hello: 'world' }
-})
-import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
+});
 
 Route.get('health', async ({ response }) => {
   const report = await HealthCheck.getReport()
@@ -31,4 +31,6 @@ Route.get('health', async ({ response }) => {
   return report.healthy
     ? response.ok(report)
     : response.badRequest(report)
-})
+});
+
+Route.resource('/cep-range', 'CepRangesController').apiOnly();
