@@ -22,3 +22,11 @@ declare module '@ioc:Adonis/Core/Env' {
   interface EnvTypes extends CustomTypes {
   }
 }
+
+import Env from '@ioc:Adonis/Core/Env'
+
+export default Env.rules({
+  HOST: Env.schema.string({ format: 'host' }),
+  PORT: Env.schema.number(),
+  // ... rest of the validations
+})
